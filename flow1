@@ -1,0 +1,91 @@
+[
+    {
+        "id": "b5dff4ef.02e838",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "68412611.761958",
+        "type": "inject",
+        "z": "b5dff4ef.02e838",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "562360f7.2672"
+            ]
+        ]
+    },
+    {
+        "id": "4f3c7e13.47299",
+        "type": "http request",
+        "z": "b5dff4ef.02e838",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://api.mediatek.com/mcs/v2/devices/DIeOP0pD/datachannels/LEDControl/datapoints.csv",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "434cbb77.d5e864",
+                "f6d23510.c41968"
+            ]
+        ]
+    },
+    {
+        "id": "434cbb77.d5e864",
+        "type": "http response",
+        "z": "b5dff4ef.02e838",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 720,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f6d23510.c41968",
+        "type": "debug",
+        "z": "b5dff4ef.02e838",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "562360f7.2672",
+        "type": "function",
+        "z": "b5dff4ef.02e838",
+        "name": "Payload",
+        "func": "msg.headers = {\n    deviceKey: \"qmGsILCR4BH0d4y1\"\n    };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "4f3c7e13.47299"
+            ]
+        ]
+    }
+]
